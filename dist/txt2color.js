@@ -1,5 +1,15 @@
 "use strict";
 /**
+ * This class has string and color property
+ */
+var T2C = /** @class */ (function () {
+    function T2C(str, color) {
+        this.string = str;
+        this.color = color;
+    }
+    return T2C;
+}());
+/**
  * This is a simple javascript class for generating color from text.
  */
 var TextToColor = /** @class */ (function () {
@@ -9,13 +19,27 @@ var TextToColor = /** @class */ (function () {
         this.rand = rand;
     }
     /**
-     * generate color code hex from string
+     * generate T2C object from string
      * @param  {string} str
-     * @return {string}     color code hex
+     * @return {T2C}    T2C object
      */
     TextToColor.prototype.generateColorHexFromString = function (str) {
         var rgb = this.__stringToRgb(str);
-        return this.__rgbToHex(rgb);
+        var hex = this.__rgbToHex(rgb);
+        return (new T2C(str, hex));
+    };
+    /**
+     * generate T2C object list from string list
+     * @param  {string[]} strList [description]
+     * @return {T2C[]}            [description]
+     */
+    TextToColor.prototype.generateColorHexFromStringList = function (strList) {
+        var t2cList = new Array();
+        var self = this;
+        strList.forEach(function (str) {
+            t2cList.push(self.generateColorHexFromString(str));
+        });
+        return t2cList;
     };
     /**
      * generate RGB value from string
