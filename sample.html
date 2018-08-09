@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Text-To-Color Sample</title>
+    <style type="text/css">
+        #main {
+            margin: 0px auto;
+            max-width: 800px;
+            padding-top: 10px;
+            text-align: center;
+        }
+        #inputStr {
+            border-radius: 5px;
+            font-size: 18pt;
+            min-width: 200px;
+            padding: 5px 10px;
+            width: 50%;
+        }
+        #hex-code {
+            font-size: 2rem;
+        }
+        #result-area {
+            font-size: 2rem;
+        }
+    </style>
+    <script type="text/javascript" src="./dist/txt2color.js"></script>
+    <script type="text/javascript">
+        var t2c = new TextToColor(9999);
+
+        function GenColor() {
+            let string = document.getElementById('inputStr').value;
+            let hex = t2c.generateColorHexFromString(string);
+
+            document.getElementById('result-area').innerHTML = string;
+            document.getElementById('result-area').style.color = hex;
+            document.getElementById('hex-code').innerHTML = hex;
+            document.getElementById('hex-code').style.color = hex;
+        }
+    </script>
+</head>
+<body>
+    <div id="main">
+        <h1>Text-To-Color Sample</h1>
+        <input type="text" id="inputStr" placeholder="input some string" onchange="GenColor()">
+        <p id="hex-code"></p>
+        <p id="result-area"></p>
+    </div>
+</body>
+</html>
