@@ -4,10 +4,12 @@
 class T2C {
     string: string;
     color: string;
+    html: string;
 
     constructor(str: string, color: string) {
         this.string = str;
         this.color = color;
+        this.html = `<span style="color: ${color}">${str}</span>`;
     }
 }
 
