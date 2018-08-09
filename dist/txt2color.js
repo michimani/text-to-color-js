@@ -6,6 +6,7 @@ var T2C = /** @class */ (function () {
     function T2C(str, color) {
         this.string = str;
         this.color = color;
+        this.html = "<span style=\"color: " + color + "\">" + str + "</span>";
     }
     return T2C;
 }());
