@@ -8,11 +8,11 @@ This is a simple javascript generating color code from string.
 <script type="text/javascript" src="/any_path_to/txt2color.js"></script>
 ```
 
-2. Create t2c object.
+2. Create ttc object.
 
 
 ```javascript
-const t2c = new TextToColor(9999);
+const ttc = new TextToColor(9999);
 ```
 
 If you want to change generating color code pattern, pass any number to constructor's argument.
@@ -21,9 +21,30 @@ If you want to change generating color code pattern, pass any number to construc
 
 ```javascript
 let string = 'some string';
-let colorCode = t2c.generateColorHexFromString(string);
+let t2c = ttc.generateColorHexFromString(string);
 
-console.log(colorCode);
+console.log(t2c);
 
-// #d71e05
+// T2C {string: "some string", color: "#d71e05"}
+//     color: "#d71e05"
+//     string: "some string"
+```
+
+# Other method
+### generateColorHexFromStringList
+This method returns list of T2C objects from string list.
+
+```javascript
+let stringList = [
+    'string 1', 'string 2', 'string 3'
+];
+
+let t2cList = ttc.generateColorHexFromStringList(stringList);
+
+console.log(t2cList);
+
+// (3) [T2C, T2C, T2C]
+//     0: T2C {string: "string 1", color: "#375af5"}
+//     1: T2C {string: "string 2", color: "#af19b9"}
+//     2: T2C {string: "string 3", color: "#3c8c05"}
 ```
