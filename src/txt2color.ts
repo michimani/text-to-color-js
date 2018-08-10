@@ -44,6 +44,14 @@ class TextToColor {
     }
 
     /**
+     * reset rand number
+     * @param {number} newRand [description]
+     */
+    resetRand(newRand: number): void {
+        this.rand = newRand;
+    }
+
+    /**
      * generate T2C object from string
      * @param  {string} str
      * @return {T2C}    T2C object
