@@ -9,7 +9,26 @@ class T2C {
     constructor(str: string, color: string) {
         this.string = str;
         this.color = color;
-        this.html = `<span style="color: ${color}">${str}</span>`;
+        this.html = `<span style="color: ${color}">${this.htmlEscape(str)}</span>`;
+    }
+
+    /**
+     * escape html string
+     * @param  {string} htmlSource
+     * @return {string}            escaped string
+     */
+    htmlEscape(htmlSource: string): string {
+        return htmlSource.replace(/[<>&"'`]/g, function(match): string {
+            const escape: any = {
+                '<': '&lt;',
+                '>': '&gt;',
+                '&': '&amp;',
+                '"': '&quot;',
+                "'": '&#39;',
+                '`': '&#x60;'
+            };
+            return escape[match];
+        });
     }
 }
 
