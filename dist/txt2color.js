@@ -6,8 +6,26 @@ var T2C = /** @class */ (function () {
     function T2C(str, color) {
         this.string = str;
         this.color = color;
-        this.html = "<span style=\"color: " + color + "\">" + str + "</span>";
+        this.html = "<span style=\"color: " + color + "\">" + this.htmlEscape(str) + "</span>";
     }
+    /**
+     * escape html string
+     * @param  {string} htmlSource
+     * @return {string}            escaped string
+     */
+    T2C.prototype.htmlEscape = function (htmlSource) {
+        return htmlSource.replace(/[<>&"'`]/g, function (match) {
+            var escape = {
+                '<': '&lt;',
+                '>': '&gt;',
+                '&': '&amp;',
+                '"': '&quot;',
+                "'": '&#39;',
+                '`': '&#x60;'
+            };
+            return escape[match];
+        });
+    };
     return T2C;
 }());
 /**
