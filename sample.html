@@ -44,34 +44,51 @@
     <script type="text/javascript">
         var ttc = new TextToColor(9999);
 
+        function ResetRand() {
+            let min = 1000;
+            let max = 10000;
+            let newRand = Math.floor( Math.random() * (max + 1 - min) ) + min;
+            ttc.resetRand(newRand);
+            GenColor();
+            GenColorList();
+        }
+
         function GenColor() {
             let string = document.getElementById('inputStr').value;
-            let t2c = ttc.generateColorHexFromString(string);
+            if (string != '') {
+                let t2c = ttc.generateColorHexFromString(string);
 
-            document.getElementById('result-area').innerHTML = t2c.html;
-            document.getElementById('result-area').style.color = t2c.color;
-            document.getElementById('hex-code').innerHTML = t2c.color;
-            document.getElementById('hex-code').style.color = t2c.color;
+                document.getElementById('result-area').innerHTML = t2c.html;
+                document.getElementById('result-area').style.color = t2c.color;
+                document.getElementById('hex-code').innerHTML = t2c.color;
+                document.getElementById('hex-code').style.color = t2c.color;
+            }
         }
 
         function GenColorList() {
             let stringList = document.getElementById('inputStrList').value.replace(/\r\n|\r/g, '\n').split('\n');
-            let t2cList = ttc.generateColorHexFromStringList(stringList);
+            if (stringList != '') {
+                let t2cList = ttc.generateColorHexFromStringList(stringList);
 
-            var strings = '';
-            var colors = '';
-            for (let i = 0; i < t2cList.length; i++) {
-                strings += `${t2cList[i].html}<br>`;
-                colors += `<span style="color: ${t2cList[i].color}">${t2cList[i].color}</span><br>`;
+                var strings = '';
+                var colors = '';
+                for (let i = 0; i < t2cList.length; i++) {
+                    strings += `${t2cList[i].html}<br>`;
+                    colors += `<span style="color: ${t2cList[i].color}">${t2cList[i].color}</span><br>`;
+                }
+
+                document.getElementById('list-result-area').innerHTML = strings;
+                document.getElementById('hex-code-list').innerHTML = colors;
             }
-
-            document.getElementById('list-result-area').innerHTML = strings;
-            document.getElementById('hex-code-list').innerHTML = colors;
         }
     </script>
 </head>
 <body>
     <h1 style="text-align: center;">Text-To-Color Sample</h1>
+    <div class="main">
+        <button id="resetRand" onclick="ResetRand()">reset random value and regenerate color</button>
+    </div>
+
     <div class="main">
         <h2>generateColorHexFromString</h2>
         <input type="text" id="inputStr" placeholder="input a string" onchange="GenColor()">

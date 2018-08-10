@@ -38,6 +38,13 @@ var TextToColor = /** @class */ (function () {
         this.rand = rand;
     }
     /**
+     * reset rand number
+     * @param {number} newRand [description]
+     */
+    TextToColor.prototype.resetRand = function (newRand) {
+        this.rand = newRand;
+    };
+    /**
      * generate T2C object from string
      * @param  {string} str
      * @return {T2C}    T2C object
